@@ -1,10 +1,9 @@
 import { useState } from "react";
 import SaveEditBtn from "./SaveEditBtn";
 
-export default function GenInfo(){
-    const [genInfoData, setGenInfoData] = useState({name: '', email: '', num: ''}) //FOR GLOBAL USE
+export default function GenInfo({genInfoData, setGenInfoData}){
     const [newGenInfoData, setNewGenInfoData] = useState({}) //FOR LOCAL USE
-    const [isEditing, setIsEditing] = useState(true)
+    const [isEditing, setIsEditing] = useState(true) //FOR LOCAL USE
 
 
     function handleNameChange(e){
@@ -34,9 +33,9 @@ export default function GenInfo(){
                 <SaveEditBtn 
                     onSave = {setGenInfoData}
                     onEdit = {setIsEditing}
-                    data = {newGenInfoData}
-                    prevData = {genInfoData}
-                    loadPreData = {setNewGenInfoData}
+                    data = {newGenInfoData} //NEW DATA TO BE SAVED
+                    prevData = {genInfoData} //SAVED DATA
+                    loadPreData = {setNewGenInfoData} //LOAD PREVIOUS SAVED DATA INCASE OF CANCELING EDIT
                     isEditing = {isEditing}
                 />
             </form>

@@ -5,11 +5,11 @@ import GenInfo from './components/GenInfo'
 import './index.css'
 import EducExp from './components/EducExp'
 import WorkExp from './components/WorkExp'
+import App from './App'
 
 createRoot(document.getElementById('root')).render(
+  
   <StrictMode>
-    <GenInfo />
-    <EducExp />
-    <WorkExp />
+    <App />
   </StrictMode>,
 )
