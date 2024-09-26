@@ -11,7 +11,7 @@ function App() {
   const [workExpData, setWorkExpData] = useState({}) //FOR GLOBAL USE
 
   return(
-    <>
+    <div className='container'>
       <InputSection 
         genInfoData = {genInfoData}
         setGenInfoData = {setGenInfoData}
@@ -25,7 +25,7 @@ function App() {
         educExpData = {educExpData}
         workExpData = {workExpData}
       />
-    </>
+    </div>
   )
 
   // const [count, setCount] = useState(0)
