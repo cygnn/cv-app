@@ -10,11 +10,11 @@ export default function InputSection({genInfoData, setGenInfoData, educExpData, 
     const [workComponent, setWorkComponent] = useState([])
 
     const handleAdd = () => {
-        setEducComponent([...educComponent, {}])
+        setEducComponent([...educComponent, {id: educComponent.length}])
     }
     
     const handleExp = () => {
-        setWorkComponent([...workComponent, {}])
+        setWorkComponent([...workComponent, {id: workComponent.length}])
     }
 
     return (
@@ -28,23 +28,27 @@ export default function InputSection({genInfoData, setGenInfoData, educExpData, 
             </div>
             <div className="work-info">
                 <h2 className="subtitle input">Work Experience</h2>
-                {workComponent.map((_, index) => (
+                {workComponent.map((_) => (
                     <WorkExp 
-                        key={index}
-                        index={index}
+                        key={_.id}
+                        index={_.id}
                         workExpData = {workExpData}
                         setWorkExpData = {setWorkExpData}
+                        workComponent = {workComponent}
+                        setWorkComponent = {setWorkComponent}
                     />
                 ))}
                 <button onClick={handleExp}><FontAwesomeIcon icon={faPlus} /> Experience</button>
             </div>
             <div className="educ-info">
-                {educComponent.map((_, index) => (
+                {educComponent.map((_) => (
                     <EducExp 
-                        key={index}
-                        index={index}
+                        key={_.id}
+                        index={_.id}
                         educExpData = {educExpData}
                         setEducExpData={setEducExpData}
+                        educComponent={educComponent}
+                        setEducComponent={setEducComponent}
                     />
                 ))}
                 <button onClick={handleAdd}><FontAwesomeIcon icon={faPlus} /> Education</button>

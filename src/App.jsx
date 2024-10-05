@@ -25,7 +25,6 @@ function App() {
         educExpData = {educExpData}
         workExpData = {workExpData}
       />
-      {console.log(genInfoData)}
     </div>
   )
 

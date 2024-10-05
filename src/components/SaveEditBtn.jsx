@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function SaveEditBtn({ componentName, onSave, onEdit, data, prevData, loadPreData, isEditing, index }) {
     const [count, setCount] = useState(0);
     const [showButton, setShowButton] = useState(false);
-    let cancel = count >= 1 ? (isEditing ? 'Cancel' : 'Edit') : 'Edit';
+    let cancel = count % 2 ? (isEditing ? 'Cancel' : 'Edit') : 'Edit';
 
     function handleSave() {
         if (componentName === 'educ' || componentName === 'work') {
@@ -43,7 +43,7 @@ export default function SaveEditBtn({ componentName, onSave, onEdit, data, prevD
     }
 
     return (
-        <div className="buttons">
+        <div className="save-edit">
             <button className='save' type="button" onClick={handleSave}>Save</button>
             {showButton && <button type="button" onClick={handleEdit}>{cancel}</button>}
         </div>

@@ -1,7 +1,9 @@
 import SaveEditBtn from "./SaveEditBtn";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export default function EducExp({ educExpData, setEducExpData, index }) {
+export default function EducExp({ educExpData, setEducExpData, index, educComponent, setEducComponent }) {
     const [newEducExpData, setNewEducExpData] = useState({
         id: index,
         name: '',
@@ -15,6 +17,14 @@ export default function EducExp({ educExpData, setEducExpData, index }) {
     function handleInputChange(e) {
         const { name, value } = e.target;
         setNewEducExpData(prev => ({ ...prev, [name]: value, id: index }));
+    }
+
+    function handleDelete(e){
+        e.preventDefault()
+        const updatedData = educExpData.filter((obj) => obj.id !== index)
+        const updatedForm = educComponent.filter((obj) => obj.id !== index)
+        setEducExpData(updatedData)
+        setEducComponent(updatedForm)
     }
 
     return (
@@ -62,16 +72,19 @@ export default function EducExp({ educExpData, setEducExpData, index }) {
                         onChange={handleInputChange}
                     />
                 </label>
-                <SaveEditBtn
-                    componentName='educ'
-                    onSave={setEducExpData}
-                    onEdit={setIsEditing}
-                    data={newEducExpData}
-                    prevData={educExpData}
-                    loadPreData={setNewEducExpData}
-                    isEditing={isEditing}
-                    index={index}
+                <div className="buttons">
+                    <button onClick={handleDelete} className="delete"> <FontAwesomeIcon icon={faTrash} /> Delete</button>
+                    <SaveEditBtn
+                        componentName='educ'
+                        onSave={setEducExpData}
+                        onEdit={setIsEditing}
+                        data={newEducExpData}
+                        prevData={educExpData}
+                        loadPreData={setNewEducExpData}
+                        isEditing={isEditing}
+                        index={index}
                 />
+                </div>
             </form>
         </>
     );
