@@ -2,55 +2,80 @@ import SaveEditBtn from "./SaveEditBtn";
 import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-export default function WorkExp({workExpData, setWorkExpData}){
-    const [newWorkExpData, setNewWorkExpData] = useState({}) //FOR LOCAL USE
+export default function WorkExp({workExpData, setWorkExpData, index}){
+    const [newWorkExpData, setNewWorkExpData] = useState({
+        id: index,
+        name: '',
+        numStart: '',
+        numEnd: '',
+        position: '',
+        description: ''
+    }) //FOR LOCAL USE
     const [isEditing, setIsEditing] = useState(true) //FOR LOCAL USE
 
-    function handleNameChange(e){
-        setNewWorkExpData({...newWorkExpData, name: e.target.value})
+    function handleInputChange(e) {
+        const { name, value } = e.target;
+        setNewWorkExpData(prev => ({ ...prev, [name]: value, id: index }));
     }
-
-    function handleStartChange(e){
-        setNewWorkExpData({...newWorkExpData, numStart: e.target.value})
-    }
-
-    function handleEndChange(e){
-        setNewWorkExpData({...newWorkExpData, numEnd: e.target.value})
-    }
-
-    function handlePositionChange(e){
-        setNewWorkExpData({...newWorkExpData, position: e.target.value})
-    }
-
-
 
     return(
         <>
             <form action="">
-                <div>
-                    <input type="text" readOnly={!isEditing} value={newWorkExpData.name} onChange={handleNameChange} placeholder="Company Name" />
-                </div>
-                <div>
-                    Start
-                    <input type="month" readOnly={!isEditing} value={newWorkExpData.numStart} onChange={handleStartChange}/>
-                </div>
-                <div>
-                    End
-                    <input type="month" readOnly={!isEditing} value={newWorkExpData.numEnd} onChange={handleEndChange}/>
-                </div>
-                <div>
-                    <input type="text" readOnly={!isEditing} value={newWorkExpData.position} onChange={handlePositionChange} placeholder="Position" />
-                </div>
-                {/* <div>
-                    <input type="text" placeholder="Responsibilities" />
-                </div> */}
+                <label>
+                    <p>Company Name</p>
+                    <input 
+                        type="text" 
+                        readOnly={!isEditing} 
+                        value={newWorkExpData.name} 
+                        onChange={handleInputChange} 
+                        name='name' 
+                        placeholder="Company Name" 
+                    />
+                </label>
+                <label>
+                    <p>Start Date</p>
+                    <input 
+                        type="month" 
+                        readOnly={!isEditing} 
+                        value={newWorkExpData.numStart} 
+                        onChange={handleInputChange} 
+                        name='numStart'
+                    />
+                </label>
+                <label>
+                    <p>End Date</p>
+                    <input 
+                        type="month" 
+                        readOnly={!isEditing} 
+                        value={newWorkExpData.numEnd} 
+                        onChange={handleInputChange} 
+                        name='numEnd'
+                    />
+                </label>
+                <label>
+                    <p>Position</p>
+                    <input 
+                        type="text" 
+                        readOnly={!isEditing} 
+                        value={newWorkExpData.position} 
+                        onChange={handleInputChange} 
+                        name='position' 
+                        placeholder="Position" 
+                    />
+                </label>
+                <label>
+                    <p>Description</p>
+                    <textarea name="description" rows={5} cols={40} value={newWorkExpData.description} onChange={handleInputChange}></textarea>
+                </label>
                 <SaveEditBtn 
+                    componentName={'work'} //To identify which component is accessing the save edit component
                     onSave={setWorkExpData}
                     onEdit={setIsEditing}
                     data={newWorkExpData}
                     prevData={workExpData}
                     loadPreData={setNewWorkExpData}
                     isEditing={isEditing}
+                    index={index}
                 />
             </form>
         </>

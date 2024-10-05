@@ -6,9 +6,9 @@ import InputSection from './components/InputSection'
 import OutputSection from './components/OutputSection'
 
 function App() {
-  const [genInfoData, setGenInfoData] = useState({name: '', email: '', num: ''})
-  const [educExpData, setEducExpData] = useState({}) //FOR GLOBAL USE
-  const [workExpData, setWorkExpData] = useState({}) //FOR GLOBAL USE
+  const [genInfoData, setGenInfoData] = useState({name: '', email: '', num: '', location: ''})
+  const [educExpData, setEducExpData] = useState([]) //FOR GLOBAL USE
+  const [workExpData, setWorkExpData] = useState([]) //FOR GLOBAL USE
 
   return(
     <div className='container'>
@@ -25,6 +25,7 @@ function App() {
         educExpData = {educExpData}
         workExpData = {workExpData}
       />
+      {console.log(genInfoData)}
     </div>
   )
 

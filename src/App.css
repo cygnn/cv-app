@@ -1,3 +1,60 @@
+body{
+  max-width: 90vw;
+}
+
+textarea{
+  resize: none;
+  width: 100%;
+}
+
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+label p {
+  text-align: left;
+  margin: 0.5rem 0 0 0;
+}
+
+label{
+  width: 100%;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+button{
+  border-radius: 4px;
+  border: 1px solid #303030;
+}
+
+input{
+  text-align: left;
+  width: 100%;
+  background-color: #ffffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  height: 1.5rem;
+  border: 1px solid black;
+  padding: 0.2rem;
+}
+
+input:focus-within{
+  border: 2px solid #007bff;
+  box-shadow: 0 0 8px rgba(0,123,255,0.3);
+  outline: none;
+  background-color: #f0f4f8;
+}
+
 #root {
   min-width: 100%;
   padding: 2rem;
@@ -42,8 +99,30 @@
 
 .container{
   display: flex;
-  justify-content: space-around;
+  
   width: 100%;
+  padding: 1rem;
+}
+
+.input-section{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.gen-info, .work-info, .educ-info{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 60%;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.input-section div h2{
+  align-self: baseline;
 }
 
 .output-section{
@@ -88,5 +167,30 @@
 .major{
   font-size: 1.2rem;
   font-weight: bold;
+}
 
+.minor{
+  font-style: italic;
+}
+
+.desc{
+  font-size: 0.9rem;
+}
+
+.buttons{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.save{
+  background-color: #187ff5;
+  color: #ffffffff;
+  border-width: 0;
+}
+
+.save:focus-visible{
+  border: 0 solid black
 }

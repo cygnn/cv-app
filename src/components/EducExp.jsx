@@ -1,51 +1,78 @@
-import SaveEditBtn from "./SaveEditBtn"
-import { useState } from "react"
-export default function EducExp({educExpData, setEducExpData}){
-    const [newEducExpData, setNewEducExpData] = useState({}) //FOR LOCAL USE
-    const [isEditing, setIsEditing] = useState(true) //FOR LOCAL USE
+import SaveEditBtn from "./SaveEditBtn";
+import { useState } from "react";
 
-    function handleNameChange(e){
-        setNewEducExpData({...newEducExpData, name: (e.target.value)})
+export default function EducExp({ educExpData, setEducExpData, index }) {
+    const [newEducExpData, setNewEducExpData] = useState({
+        id: index,
+        name: '',
+        course: '',
+        numStart: '',
+        numEnd: ''
+    });
+
+    const [isEditing, setIsEditing] = useState(true);
+
+    function handleInputChange(e) {
+        const { name, value } = e.target;
+        setNewEducExpData(prev => ({ ...prev, [name]: value, id: index }));
     }
 
-    function handleCourseChange(e){
-        setNewEducExpData({...newEducExpData, course: (e.target.value)})
-    }
-
-    function handleStartChange(e){
-        setNewEducExpData({...newEducExpData, numStart: (e.target.value)})
-    }
-
-    function handleEndChange(e){
-        setNewEducExpData({...newEducExpData, numEnd: (e.target.value)})
-    }
-
-    return(
+    return (
         <>
             <form action="">
-                <div>
-                    <input type="text" readOnly={!isEditing} placeholder="School Name" value={newEducExpData.name} onChange={handleNameChange}/>
-                </div>
-                <div>
-                    <input type="text" readOnly={!isEditing} placeholder="Course" value={newEducExpData.course} onChange={handleCourseChange}/>
-                </div>
-                <div>
-                    Start
-                    <input type='month' readOnly={!isEditing} value={newEducExpData.numStart} onChange={handleStartChange}/>
-                </div>
-                <div>
-                    End
-                    <input type="month" readOnly={!isEditing} value={newEducExpData.numEnd} onChange={handleEndChange}/>
-                </div>
-                <SaveEditBtn 
+                <label>
+                    <p>School / University</p>
+                    <input
+                        type="text"
+                        readOnly={!isEditing}
+                        name="name"
+                        placeholder="Enter school / university"
+                        value={newEducExpData.name}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <label>
+                    <p>Field of Study / Degree</p>
+                    <input
+                        type="text"
+                        readOnly={!isEditing}
+                        name="course"
+                        placeholder="Enter field of study / degree"
+                        value={newEducExpData.course}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <label>
+                    <p>Start Date</p>
+                    <input
+                        type='month'
+                        readOnly={!isEditing}
+                        name="numStart"
+                        value={newEducExpData.numStart}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <label>
+                    <p>End Date</p>
+                    <input
+                        type="month"
+                        readOnly={!isEditing}
+                        name="numEnd"
+                        value={newEducExpData.numEnd}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <SaveEditBtn
+                    componentName='educ'
                     onSave={setEducExpData}
                     onEdit={setIsEditing}
-                    data={newEducExpData} //NEW DATA TO BE SAVED
-                    prevData={educExpData} //SAVED DATA
-                    loadPreData={setNewEducExpData} //LOAD PREVIOUS SAVED DATA INCASE OF CANCELING EDIT
+                    data={newEducExpData}
+                    prevData={educExpData}
+                    loadPreData={setNewEducExpData}
                     isEditing={isEditing}
+                    index={index}
                 />
             </form>
         </>
-    )
+    );
 }

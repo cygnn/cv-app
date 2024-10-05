@@ -1,42 +1,32 @@
+import EducComp from "./EducComp"
+import WorkComp from "./WorkComp"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import { faPhone } from "@fortawesome/free-solid-svg-icons"
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons"
 export default function OutputSection({genInfoData, educExpData, workExpData}){
     
     return(
         <div className="output-section">
             <div className="personal-info">
-                <h1 className="name">{genInfoData.name}</h1>
-                <div>Email: {genInfoData.email}</div>
-                <div>Mobile Number: {genInfoData.num}</div>
+                <h1 className="name">{genInfoData.name} </h1>
+                <div><FontAwesomeIcon icon={faEnvelope} /> {genInfoData.email} </div>
+                <div><FontAwesomeIcon icon={faPhone} /> {genInfoData.num} </div>
+                <div><FontAwesomeIcon icon={faLocationDot} /> {genInfoData.location} </div>
             </div>
-            <div className="experience">
+            <div className="experience">{/*Need to make another component here */}
                 <h2 className="subtitle">Experience</h2>
-                <div className="grid">
-                    <div className="date">
-                        <div>{workExpData.numStart} - {workExpData.numEnd}</div>
-                    </div>
-                    <div className="info">
-                        <div className="major">{workExpData.position}</div>
-                        <div className="minor">{workExpData.name}</div>
-                    </div>
-                </div>
+                <WorkComp
+                    workExpData={workExpData}
+                />
                 
             </div>
-            <div className="education">
+            <div className="education">{/*Need to make another component here */}
                 <h2 className="subtitle">Education</h2>
-                <div className="grid">
-                    <div className="date">
-                        <div>{educExpData.numStart} - {educExpData.numEnd}</div>
-                    </div>
-                    <div className="info">
-                        <div className="major">{educExpData.name}</div>
-                        <div className="minor">{educExpData.course}</div>
-                    </div>
-                </div>
-                
-                
+                <EducComp
+                    educExpData={educExpData}
+                />
             </div>
-            
-            {console.log(educExpData)}
-            {console.log(workExpData)}
         </div>
     )
 }
