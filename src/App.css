@@ -4,7 +4,7 @@ body{
 
 textarea{
   resize: none;
-  width: 100%;
+  width: 90%;
 }
 
 
@@ -39,13 +39,14 @@ button{
 
 input{
   text-align: left;
-  width: 100%;
+  display: flex;
+  width: 97%;
   background-color: #ffffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   height: 1.5rem;
   border: 1px solid black;
-  padding: 0.2rem;
+  padding: 0.2rem
 }
 
 input:focus-within{
@@ -121,6 +122,34 @@ input:focus-within{
   border: 1px solid black;
 }
 
+.work-info .body{
+  max-height: 0; /* Initially closed */
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Prevent interaction when hidden */
+  overflow: hidden; /* Prevent overflow during transition */
+  transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+}
+
+.work-info.active .body{
+  max-height: fit-content; /* Set a max height that accommodates your content */
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Make it focusable */
+}
+
+.educ-info .body{
+  max-height: 0; /* Initially closed */
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Prevent interaction when hidden */
+  overflow: hidden; /* Prevent overflow during transition */
+  transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+}
+
+.educ-info.active .body{
+  max-height: fit-content; /* Set a max height that accommodates your content */
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Make it focusable */
+}
+
 .input-section div h2{
   align-self: baseline;
 }
@@ -139,6 +168,12 @@ input:focus-within{
   flex-direction: column;
   gap: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .name{
@@ -206,4 +241,24 @@ input:focus-within{
 
 .save:focus-visible{
   border: 0 solid black
+}
+
+.dropdown {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;              /* Text color */
+  border: none;              /* No border */
+  border-radius: 4px;       /* Rounded corners */
+  padding: 10px 15px;       /* Padding for size */
+  font-size: 16px;          /* Font size */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.dropdown:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.dropdown:focus {
+  outline: none;             /* Remove outline on focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Custom focus outline */
 }
